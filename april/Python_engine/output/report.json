@@ -1,0 +1,98 @@
+{
+  "repository": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\DocuGoSync_Test",
+  "base_commit": "17f35e793414f6994a5379a2bcd2c47bf2857a78",
+  "head_commit": "647b9839a08405bbf49829e93477d5c6cc7fcfd1",
+  "readme_used": "README.md",
+  "changed_files": [
+    {
+      "path": "src/config.cpp",
+      "old_path": "src/config.cpp",
+      "new_path": "src/config.cpp",
+      "status": "modified",
+      "language": "C++"
+    }
+  ],
+  "unsupported_files": [],
+  "summary": {
+    "changed_files": 1,
+    "cpp_files_analyzed": 1,
+    "code_changes": 3,
+    "documentation_findings": 3
+  },
+  "code_changes": [
+    {
+      "change_type": "modified",
+      "new_line": 3,
+      "new_type": "int",
+      "new_value": "60",
+      "old_line": 3,
+      "old_type": "int",
+      "old_value": "30",
+      "symbol": "TIMEOUT",
+      "file": "src/config.cpp"
+    },
+    {
+      "change_type": "removed",
+      "new_line": -1,
+      "new_type": "",
+      "new_value": "",
+      "old_line": 4,
+      "old_type": "int",
+      "old_value": "8080",
+      "symbol": "PORT",
+      "file": "src/config.cpp"
+    },
+    {
+      "change_type": "modified",
+      "new_line": 4,
+      "new_type": "double",
+      "new_value": "0.20",
+      "old_line": 5,
+      "old_type": "double",
+      "old_value": "0.18",
+      "symbol": "TAX_RATE",
+      "file": "src/config.cpp"
+    }
+  ],
+  "findings": [
+    {
+      "file": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\PS3_DocuGoSync\\Python_engine\\input\\README_current.md",
+      "line": 5,
+      "documented_statement": "The application uses a timeout of 30 seconds.",
+      "section": "Configuration",
+      "symbol": "TIMEOUT",
+      "documented_value": "30",
+      "source_value": "60",
+      "source_file": "src/config.cpp",
+      "match_type": "words",
+      "status": "potential_drift",
+      "suggestion": "Update TIMEOUT from 30 to 60 seconds."
+    },
+    {
+      "file": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\PS3_DocuGoSync\\Python_engine\\input\\README_current.md",
+      "line": 7,
+      "documented_statement": "The server runs on port 8080.",
+      "section": "Configuration",
+      "symbol": "PORT",
+      "documented_value": "8080",
+      "source_value": null,
+      "source_file": "src/config.cpp",
+      "match_type": "words",
+      "status": "potential_drift",
+      "suggestion": "Remove or update documentation for deleted symbol PORT."
+    },
+    {
+      "file": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\PS3_DocuGoSync\\Python_engine\\input\\README_current.md",
+      "line": 9,
+      "documented_statement": "The tax rate is 0.18.",
+      "section": "Configuration",
+      "symbol": "TAX_RATE",
+      "documented_value": "0.18",
+      "source_value": "0.20",
+      "source_file": "src/config.cpp",
+      "match_type": "words",
+      "status": "potential_drift",
+      "suggestion": "Update TAX_RATE from 0.18 to 0.20."
+    }
+  ]
+}

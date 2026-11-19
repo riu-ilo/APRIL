@@ -1,0 +1,43 @@
+{
+  "findings": [
+    {
+      "file": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\PS3_DocuGoSync\\Python_engine\\input\\README_current.md",
+      "line": 5,
+      "documented_statement": "The application uses a timeout of 30 seconds.",
+      "section": "Configuration",
+      "symbol": "TIMEOUT",
+      "documented_value": "30",
+      "source_value": "60",
+      "source_file": "src/config.cpp",
+      "match_type": "words",
+      "status": "potential_drift",
+      "suggestion": "Update TIMEOUT from 30 to 60 seconds."
+    },
+    {
+      "file": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\PS3_DocuGoSync\\Python_engine\\input\\README_current.md",
+      "line": 7,
+      "documented_statement": "The server runs on port 8080.",
+      "section": "Configuration",
+      "symbol": "PORT",
+      "documented_value": "8080",
+      "source_value": null,
+      "source_file": "src/config.cpp",
+      "match_type": "words",
+      "status": "potential_drift",
+      "suggestion": "Remove or update documentation for deleted symbol PORT."
+    },
+    {
+      "file": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\PS3_DocuGoSync\\Python_engine\\input\\README_current.md",
+      "line": 9,
+      "documented_statement": "The tax rate is 0.18.",
+      "section": "Configuration",
+      "symbol": "TAX_RATE",
+      "documented_value": "0.18",
+      "source_value": "0.20",
+      "source_file": "src/config.cpp",
+      "match_type": "words",
+      "status": "potential_drift",
+      "suggestion": "Update TAX_RATE from 0.18 to 0.20."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "file": "C:\\Users\\Prince Kumar\\OneDrive\\Desktop\\dump\\B2\\PS3_DocuGoSync\\Python_engine\\input\\README_current.md",
+  "sentences": [
+    {
+      "text": "The application uses a timeout of 30 seconds.",
+      "line": 5,
+      "section": "Configuration",
+      "kind": "sentence"
+    },
+    {
+      "text": "The server runs on port 8080.",
+      "line": 7,
+      "section": "Configuration",
+      "kind": "sentence"
+    },
+    {
+      "text": "The tax rate is 0.18.",
+      "line": 9,
+      "section": "Configuration",
+      "kind": "sentence"
+    },
+    {
+      "text": "The maximum number of users is 100.",
+      "line": 11,
+      "section": "Configuration",
+      "kind": "sentence"
+    }
+  ]
+}

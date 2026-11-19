@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>April</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --mc-font-title: 'Press Start 2P', 'Courier New', monospace;
+      --mc-font-body: 'VT323', 'Consolas', 'Courier New', monospace;
+      --wood-light: #b68f56;
+      --wood-mid: #9e7a48;
+      --wood-dark: #7c5d32;
+      --wood-border: #3d2a12;
+      --end-void: #08080a;
+      --purpur-main: #a864a8;
+      --purpur-dark: #6b386b;
+      --ender-glow: #c084fc;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -webkit-crisp-edges;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='%230b2e33' d='M12 0h4v4h-1v1h-1v1h-1v1h-1v1h-1v1H9v1H8v1H7v1H6v1H5v1H3v2H0v-3h2v-2h1v-1h1V9h1V8h1V7h1V6h1V5h1V4h1V3h1V2h1V0z'/><path fill='%2333ebcb' d='M13 1h2v2h-1v1h-1v1h-1v1h-1v1h-1v1H9v1H8v1H7V9h1V8h1V7h1V6h1V5h1V4h1V3h1V1z'/><path fill='%23a6fff2' d='M13 1h1v1h-1v1h-1v1h-1v1h-1v1H9v1H8v1H7V7h1V6h1V5h1V4h1V3h1V2h1V1z'/><path fill='%231b8a99' d='M14 3h1v1h-1v1h-1v1h-1v1h-1v1h-1v1H9v1H8V9h1V8h1V7h1V6h1V5h1V4h1V3z'/><path fill='%234a2e16' d='M4 8h1v1h1v1h1v1h1v1H6v-1H5v-1H4V8z'/><path fill='%238c5b2b' d='M3 11h2v2H3v-2z'/><path fill='%232e1b0c' d='M1 13h2v2H1v-2z'/></svg>") 2 2, auto;
+    }
+
+    svg, canvas, img {
+      shape-rendering: crispEdges;
+      image-rendering: pixelated;
+    }
+
+    input, textarea {
+      cursor: text;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--end-void);
+      color: #f3f0ff;
+      font-family: var(--mc-font-body);
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    .selectable {
+      user-select: text;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    #end-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+
+    .app-header {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px 8px 24px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    #logo-d-emblem {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.92));
+    }
+
+    .mc-logo-text {
+      margin: 0;
+      font-family: var(--mc-font-title);
+      font-size: clamp(1rem, 2.4vw, 1.55rem);
+      color: #e4e4e7;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      text-shadow:
+        0 2px 0 #7a7a7a,
+        0 4px 0 #4a4a4a,
+        0 6px 0 #1f1f1f,
+        3px 6px 0 rgba(0, 0, 0, 0.88);
+    }
+
+    .mc-logo-accent {
+      color: #c77dff;
+      text-shadow:
+        0 2px 0 #7b2cbf,
+        0 4px 0 #4a148c,
+        0 6px 0 #1f063d,
+        3px 6px 0 rgba(0, 0, 0, 0.88);
+    }
+
+    .brand-tagline {
+      margin-top: 4px;
+      font-size: 1.15rem;
+      letter-spacing: 1.5px;
+      color: rgba(233, 213, 255, 0.88);
+      text-shadow: 0 2px 0 #000000;
+    }
+
+    .server-ping-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(18, 12, 32, 0.92);
+      border: 2px solid #4c3875;
+      padding: 7px 12px;
+      box-shadow: 0 4px 0 #090512;
+      transition: border-color 0.15s ease;
+    }
+
+    .server-ping-btn:hover {
+      border-color: #c084fc;
+    }
+
+    .ping-icon {
+      width: 20px;
+      height: 16px;
+      display: block;
+    }
+
+    .status-pill-text {
+      font-family: var(--mc-font-title);
+      font-size: 0.62rem;
+      letter-spacing: 0.5px;
+      color: #bef264;
+    }
+
+    .status-pill-text.is-amber { color: #fcd34d; }
+    .status-pill-text.is-purple { color: #d8b4fe; }
+    .status-pill-text.is-lime { color: #bef264; }
+
+    .app-main {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 10px 20px 156px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .sign-deck-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    @media (min-width: 768px) {
+      .sign-deck-grid {
+        grid-template-columns: 8fr 4fr;
+      }
+    }
+
+    .mc-sign {
+      position: relative;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          #a9834f 0px,
+          #a9834f 10px,
+          #967140 10px,
+          #967140 12px,
+          #b48d57 12px,
+          #b48d57 22px,
+          #8a6637 22px,
+          #8a6637 24px
+        );
+      border: 4px solid var(--wood-border);
+      box-shadow:
+        inset 3px 3px 0 #cca66e,
+        inset -3px -3px 0 #6e4f26,
+        0 8px 0 rgba(0, 0, 0, 0.72);
+      color: #1c1206;
+    }
+
+    .mc-sign-post::after {
+      content: "";
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 20px;
+      background: linear-gradient(90deg, #6e4f26 0%, #967140 45%, #5c401c 100%);
+      border-left: 3px solid var(--wood-border);
+      border-right: 3px solid var(--wood-border);
+      border-bottom: 3px solid var(--wood-border);
+      z-index: -1;
+    }
+
+    .sign-board-inner {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .mc-sign-header {
+      border-bottom: 2px dashed rgba(61, 42, 18, 0.3);
+      padding-bottom: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .sign-label-title {
+      font-family: var(--mc-font-title);
+      font-size: 0.65rem;
+      color: #2b1c0a;
+      letter-spacing: 0.5px;
+    }
+
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mc-wood-chip {
+      background: #8a6637;
+      border: 2px solid #3d2a12;
+      box-shadow: inset 1px 1px 0 #b89158;
+      color: #fff3d6;
+      font-family: var(--mc-font-body);
+      font-size: 1rem;
+      padding: 2px 7px;
+      line-height: 1.1;
+      transition: background 0.1s ease;
+    }
+
+    .mc-wood-chip:hover {
+      background: #a47b46;
+    }
+
+    .sign-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .mc-sign-input {
+      width: 100%;
+      padding: 10px 30px 10px 12px;
+      background: rgba(45, 30, 12, 0.16);
+      border: 2px solid rgba(61, 42, 18, 0.5);
+      color: #140c03;
+      font-family: var(--mc-font-title);
+      font-size: 0.76rem;
+      line-height: 1.5;
+      outline: none;
+      transition: background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .mc-sign-input:focus {
+      background: rgba(255, 244, 214, 0.38);
+      border-color: #241606;
+    }
+
+    .mc-sign-input::placeholder {
+      color: rgba(42, 27, 10, 0.55);
+    }
+
+    .mc-blink {
+      position: absolute;
+      right: 12px;
+      font-family: var(--mc-font-title);
+      font-size: 0.75rem;
+      color: #1f1305;
+      pointer-events: none;
+      animation: mcBlink 1s infinite;
+    }
+
+    @keyframes mcBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .mc-sign-footer {
+      border-top: 2px dashed rgba(61, 42, 18, 0.3);
+      padding-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.05rem;
+      color: #2d1d0b;
+    }
+
+    .mc-sign-btn {
+      width: 100%;
+      height: 100%;
+      min-height: 86px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-align: center;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          #b38b54 0px,
+          #b38b54 8px,
+          #9b7542 8px,
+          #9b7542 16px
+        );
+      border: 4px solid #3a2710;
+      box-shadow:
+        inset 3px 3px 0 #d6b178,
+        inset -3px -3px 0 #6d4e24,
+        0 6px 0 #1f1407;
+      color: #170e04;
+      font-family: var(--mc-font-title);
+      transition: transform 0.08s ease, filter 0.12s ease, box-shadow 0.08s ease;
+    }
+
+    .mc-sign-btn:hover {
+      filter: brightness(1.08);
+      box-shadow:
+        inset 3px 3px 0 #ffe0a3,
+        inset -3px -3px 0 #7b5829,
+        0 6px 0 #1f1407,
+        0 0 18px rgba(192, 132, 252, 0.55);
+    }
+
+    .mc-sign-btn:active {
+      transform: translateY(4px);
+      box-shadow:
+        inset 3px 3px 0 #8a6637,
+        inset -3px -3px 0 #593e1a,
+        0 2px 0 #1f1407;
+    }
+
+    .analyze-main-txt {
+      font-size: 0.92rem;
+      letter-spacing: 1px;
+    }
+
+    .analyze-sub-txt {
+      font-family: var(--mc-font-body);
+      font-size: 1.15rem;
+      color: #2c1c09;
+      letter-spacing: 1.5px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 6px;
+    }
+
+    @media (min-width: 640px) {
+      .summary-grid {
+        gap: 18px;
+      }
+    }
+
+    .summary-plaque {
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .plaque-label {
+      font-family: var(--mc-font-title);
+      font-size: 0.56rem;
+      color: #3a250c;
+      line-height: 1.35;
+    }
+
+    .plaque-value {
+      font-family: var(--mc-font-title);
+      font-size: 1.1rem;
+      margin-top: 6px;
+      color: #140b02;
+    }
+
+    .plaque-value.is-danger { color: #7f1d1d; }
+    .plaque-value.is-safe { color: #14532d; }
+
+    .mc-panel {
+      background: rgba(16, 12, 26, 0.92);
+      border: 4px solid #483b63;
+      box-shadow:
+        inset 3px 3px 0 #68568c,
+        inset -3px -3px 0 #261e36,
+        0 10px 26px rgba(0, 0, 0, 0.82);
+    }
+
+    .view-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .state-banner {
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .state-title {
+      font-family: var(--mc-font-title);
+      font-size: 0.78rem;
+      color: #e9d5ff;
+      line-height: 1.5;
+    }
+
+    .state-title.is-amber { color: #fcd34d; }
+    .state-title.is-emerald { color: #6ee7b7; }
+    .state-title.is-rose { color: #fda4af; }
+
+    .state-subtitle {
+      font-size: 1.2rem;
+      color: rgba(233, 213, 255, 0.8);
+    }
+
+    .mc-btn-stone {
+      background: #6f6f6f;
+      border: 3px solid #1e1e1e;
+      box-shadow:
+        inset 2px 2px 0 #a8a8a8,
+        inset -2px -2px 0 #454545;
+      color: #ffffff;
+      text-shadow: 2px 2px 0 #2b2b2b;
+      font-family: var(--mc-font-title);
+      font-size: 0.62rem;
+      padding: 8px 12px;
+      transition: background 0.1s ease, transform 0.06s ease;
+    }
+
+    .mc-btn-stone:hover {
+      background: #7c689e;
+      box-shadow:
+        inset 2px 2px 0 #b79ee0,
+        inset -2px -2px 0 #4b3b66;
+    }
+
+    .mc-btn-stone:active {
+      transform: translateY(2px);
+    }
+
+    .finding-card {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .finding-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 2px solid #483b63;
+      padding-bottom: 10px;
+    }
+
+    .finding-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ERROR-badge {
+      font-family: var(--mc-font-title);
+      font-size: 0.58rem;
+      background: #4c0519;
+      border: 2px solid #f43f5e;
+      color: #fda4af;
+      padding: 4px 8px;
+    }
+
+    .file-loc {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fcd34d;
+    }
+
+    .symbol-pill {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      background: #2b1f42;
+      border: 2px solid #68568c;
+      padding: 3px 9px;
+      color: #67e8f9;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .compare-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .box-doc-old {
+      background: #1b0d14;
+      border: 2px solid #881337;
+      padding: 12px;
+    }
+
+    .box-code-new {
+      background: #0d1f17;
+      border: 2px solid #065f46;
+      padding: 12px;
+    }
+
+    .box-mini-title {
+      font-family: var(--mc-font-title);
+      font-size: 0.55rem;
+      margin-bottom: 6px;
+    }
+
+    .box-doc-old .box-mini-title { color: #fda4af; }
+    .box-code-new .box-mini-title { color: #6ee7b7; }
+
+    .box-doc-old .box-content {
+      font-size: 1.15rem;
+      color: #ffe4e6;
+    }
+
+    .box-code-new .box-content {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.98rem;
+      color: #d1fae5;
+    }
+
+    .finding-explanation {
+      font-size: 1.15rem;
+      color: rgba(243, 232, 255, 0.92);
+      line-height: 1.35;
+    }
+
+    .suggestion-sign {
+      padding: 12px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .suggestion-label {
+      font-family: var(--mc-font-title);
+      font-size: 0.55rem;
+      color: #3d280e;
+    }
+
+    .suggestion-text {
+      font-size: 1.18rem;
+      font-weight: bold;
+      color: #140b02;
+      margin-top: 4px;
+    }
+
+    .subview-panel {
+      padding: 18px;
+    }
+
+    .subview-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 2px solid #483b63;
+      padding-bottom: 12px;
+    }
+
+    .subview-title {
+      font-family: var(--mc-font-title);
+      font-size: 0.72rem;
+    }
+
+    .endpoint-bar {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      color: #bef264;
+      background: #0b0714;
+      border: 2px solid #352652;
+      padding: 8px 12px;
+    }
+
+    .json-box {
+      margin: 0;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #f3e8ff;
+      background: #0b0714;
+      border: 2px solid #352652;
+      padding: 14px;
+      overflow-x: auto;
+      max-height: 320px;
+      line-height: 1.45;
+    }
+
+    .diff-row-card {
+      background: #0b0714;
+      border: 2px solid #352652;
+      padding: 12px 14px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.92rem;
+    }
+
+    .diff-row-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: #67e8f9;
+      margin-bottom: 6px;
+    }
+
+    .diff-del { color: #fb7185; }
+    .diff-add { color: #34d399; }
+
+    .pr-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .pr-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pr-card {
+      background: #0b0714;
+      border: 2px solid #352652;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .pr-title {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.92rem;
+      font-weight: bold;
+      color: #f0abfc;
+    }
+
+    .pr-desc {
+      font-size: 1.05rem;
+      color: rgba(243, 232, 255, 0.82);
+      margin-top: 2px;
+    }
+
+    .mc-hud-dock {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: max-content;
+      max-width: 98vw;
+      pointer-events: auto;
+    }
+
+    .hotbar-hud-label {
+      font-family: var(--mc-font-title);
+      font-size: 0.62rem;
+      color: #ffffff;
+      background: rgba(16, 4, 28, 0.92);
+      border: 2px solid #591c87;
+      padding: 5px 12px;
+      box-shadow: 0 3px 0 #000000;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .mc-xp-bar {
+      width: 224px;
+      height: 10px;
+      background: #1a2416;
+      border: 2px solid #090d08;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.85);
+    }
+
+    .mc-xp-fill {
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        #80ff20 0px,
+        #80ff20 14px,
+        #5ec912 14px,
+        #5ec912 16px
+      );
+      box-shadow: inset 0 2px 0 #c6ff8f;
+      transition: width 0.35s ease;
+    }
+
+    .mc-hotbar {
+      background: #8b8b8b;
+      border: 4px solid #1e1e1e;
+      box-shadow:
+        inset 3px 3px 0 #c6c6c6,
+        inset -3px -3px 0 #555555,
+        0 10px 25px rgba(0, 0, 0, 0.9);
+      display: inline-flex;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .mc-slot {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      background: #8b8b8b;
+      border-top: 3px solid #373737;
+      border-left: 3px solid #373737;
+      border-right: 3px solid #ffffff;
+      border-bottom: 3px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 0;
+      transition: background 0.08s ease;
+    }
+
+    .mc-slot:hover {
+      background: #9e9e9e;
+    }
+
+    .mc-slot.active {
+      outline: 4px solid #f5f5f5;
+      box-shadow:
+        0 0 0 6px #2a2a2a,
+        0 0 18px rgba(192, 132, 252, 0.85);
+      z-index: 5;
+      background: #a397b5;
+    }
+
+    .mc-sprite-2x {
+      width: 32px;
+      height: 32px;
+      display: block;
+      image-rendering: pixelated;
+    }
+
+    .mc-slot-num {
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      font-family: var(--mc-font-body);
+      font-size: 0.95rem;
+      color: #ffffff;
+      text-shadow: 1px 1px 0 #1e1e1e;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .mc-tooltip {
+      position: absolute;
+      bottom: 66px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(16, 4, 28, 0.96);
+      border: 2px solid #591c87;
+      box-shadow: 0 0 0 2px #140521;
+      color: #ffffff;
+      font-family: var(--mc-font-title);
+      font-size: 0.56rem;
+      white-space: nowrap;
+      padding: 5px 8px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.1s ease;
+      z-index: 60;
+    }
+
+    .mc-slot:hover .mc-tooltip {
+      opacity: 1;
+    }
+
+    @keyframes enchantGlint {
+      0%, 100% { filter: drop-shadow(0 0 1px #c026d3) brightness(1); }
+      50% { filter: drop-shadow(0 0 4px #f0abfc) brightness(1.2); }
+    }
+
+    .mc-enchanted-svg {
+      animation: enchantGlint 1.8s steps(4, end) infinite;
+    }
+
+    .ender-sparkle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: #d8b4fe;
+      box-shadow: 0 0 6px #c084fc;
+      pointer-events: none;
+      z-index: 9998;
+      animation: sparkleFade 0.55s steps(4, end) forwards;
+    }
+
+    @keyframes sparkleFade {
+      0% { opacity: 1; transform: translate(0, 0) scale(1); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.4); }
+    }
+
+    .slash-fx {
+      position: fixed;
+      width: 28px;
+      height: 28px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      animation: slashPop 0.28s ease-out forwards;
+    }
+
+    @keyframes slashPop {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5) rotate(-25deg); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(1.45) rotate(25deg); }
+    }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: #120b20; }
+    ::-webkit-scrollbar-thumb { background: #5b3e82; border: 2px solid #120b20; }
+  </style>
+</head>
+<body>
+
+  <canvas id="end-canvas"></canvas>
+
+  <header class="app-header">
+    <div class="brand-group">
+      <div id="logo-d-emblem" aria-hidden="true"></div>
+      <div>
+        <h1 class="mc-logo-text">
+          <span class="mc-logo-accent">A</span>pril
+        </h1>
+        <div class="brand-tagline">CODE &harr; DOCS ERROR DETECTOR</div>
+      </div>
+    </div>
+
+    <button id="btn-ping-server" type="button" title="Ping Flask Backend (/api/status)" class="server-ping-btn">
+      <svg id="ping-bars" viewBox="0 0 15 12" class="ping-icon" aria-hidden="true">
+        <rect x="0" y="9" width="2" height="3" fill="#80ff20"/>
+        <rect x="3" y="7" width="2" height="5" fill="#80ff20"/>
+        <rect x="6" y="5" width="2" height="7" fill="#80ff20"/>
+        <rect x="9" y="3" width="2" height="9" fill="#80ff20"/>
+        <rect x="12" y="1" width="2" height="11" fill="#80ff20"/>
+      </svg>
+      <span id="backend-status-text" class="status-pill-text is-lime">READY</span>
+    </button>
+  </header>
+
+  <main class="app-main">
+
+    <section aria-label="Repository Sign Controls" class="sign-deck-grid">
+      <form id="analyze-form" method="post" action="http://127.0.0.1:5000/api/analyze" aria-label="Repository Sign Controls" class="sign-deck-grid">
+      <div class="mc-sign mc-sign-post sign-board-inner">
+        <div class="mc-sign-header">
+          <span class="sign-label-title">PROJECT PATH</span>
+          <div class="chip-group">
+            <button type="button" data-path="./test-repository" class="mc-wood-chip">./test-repository</button>
+            <button type="button" data-path="./sample-repo-clean" class="mc-wood-chip">./sample-repo-clean</button>
+            <button type="button" data-path="./broken-repo" class="mc-wood-chip">./broken-repo</button>
+          </div>
+        </div>
+        <div class="sign-input-wrap">
+
+          <input
+            id="repo-path-input"
+            type="text"
+            value="./test-repository"
+            placeholder="./test-repository"
+            spellcheck="false"
+            autocomplete="off"
+            aria-label="Repository Path"
+            class="mc-sign-input selectable"
+            name="repo-path"
+          />
+
+          <span class="mc-blink" aria-hidden="true">_</span>
+        </div>
+
+        <div class="mc-sign-footer">
+          <span id="sign-status-line" style="font-weight:bold;">IDLE</span>
+          <span style="font-family:monospace; font-size:0.85rem; opacity:0.8;">POST /api/analyze</span>
+        </div>
+      </div>
+
+      <div>
+        <button id="btn-analyze" type="submit" class="mc-sign-btn">
+          <span id="analyze-btn-label" class="analyze-main-txt">&gt; ANALYZE &lt;</span>
+          <span class="analyze-sub-txt">[ RUN SYNC CHECK ]</span>on
+        </button>
+      </div>
+    </section>
+  </form>
+    <section id="summary-plaques" aria-label="Analysis Summary" class="summary-grid">
+      <div class="mc-sign summary-plaque">
+        <div class="plaque-label">FILES SCANNED</div>
+        <div id="stat-files" class="plaque-value">12</div>
+      </div>
+      <div class="mc-sign summary-plaque">
+        <div class="plaque-label">ERROR ISSUES FOUND</div>
+        <div id="stat-issues" class="plaque-value is-danger">3</div>
+      </div>
+      <div class="mc-sign summary-plaque">
+        <div class="plaque-label">HIGH CONFIDENCE</div>
+        <div id="stat-confidence" class="plaque-value is-safe">3/3</div>
+      </div>
+    </section>
+
+    <section id="view-scan" class="view-stack">
+      <div id="state-banner" class="mc-panel state-banner hidden">
+        <div id="state-title" class="state-title">READY TO SCAN REPOSITORY</div>
+        <div id="state-subtitle" class="state-subtitle">Click &gt; ANALYZE &lt; or replay a historical PR in Slot 4.</div>
+      </div>
+      <div id="findings-list" class="view-stack"></div>
+    </section>
+
+    <section id="view-json" class="mc-panel subview-panel view-stack hidden">
+      <div class="subview-header">
+        <span class="subview-title" style="color:#fcd34d;">FLASK API &amp; JSON RESPONSE</span>
+        <div class="chip-group">
+          <button id="btn-test-endpoint" type="button" class="mc-btn-stone">PING /API/STATUS</button>
+          <button id="btn-copy-json" type="button" class="mc-btn-stone">COPY JSON</button>
+        </div>
+      </div>
+      <div id="api-endpoint-log" class="endpoint-bar">
+        POST /api/analyze &bull; GET /api/status
+      </div>
+      <pre id="json-output" class="json-box selectable"></pre>
+    </section>
+
+    <section id="view-codediff" class="mc-panel subview-panel view-stack hidden">
+      <div class="subview-header">
+        <span class="subview-title" style="color:#67e8f9;">MEMBER 1 &bull; C++ CODE CHANGES</span>
+      </div>
+      <div id="code-diff-list" class="view-stack"></div>
+    </section>
+
+    <section id="view-history" class="mc-panel subview-panel view-stack hidden">
+      <div class="subview-header">
+        <span class="subview-title" style="color:#f0abfc;">HISTORICAL PR ERROR REPLAY</span>
+      </div>
+      <div class="pr-grid">
+        <div class="pr-card">
+          <div>
+            <div class="pr-title">PR #142 &bull; Bump default TIMEOUT</div>
+            <div class="pr-desc">Caught README.md:12 ERROR before merge</div>
+          </div>
+          <button type="button" data-replay-path="./prs/pr-142-timeout" class="replay-pr-btn mc-btn-stone">REPLAY</button>
+        </div>
+        <div class="pr-card">
+          <div>
+            <div class="pr-title">PR #189 &bull; Deprecate --strict-mode</div>
+            <div class="pr-desc">Caught docs/CLI.md:29 stale flag</div>
+          </div>
+          <button type="button" data-replay-path="./prs/pr-189-cli" class="replay-pr-btn mc-btn-stone">REPLAY</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mc-hud-dock" aria-label="Bottom Minecraft Hotbar Dock">
+    <div id="hotbar-active-label" class="hotbar-hud-label">
+      1. Scanner &amp; Findings
+    </div>
+
+    <div class="mc-xp-bar" aria-hidden="true">
+      <div id="xp-fill" class="mc-xp-fill" style="width: 100%;"></div>
+    </div>
+
+    <nav id="mc-hotbar-nav" aria-label="Minecraft Hotbar Navigation" class="mc-hotbar">
+      <button type="button" class="mc-slot active" data-slot-id="lantern" data-tab="scan" data-label="1. Scanner &amp; Findings">
+        <span class="mc-slot-num">1</span>
+        <span class="mc-tooltip">Scanner &amp; Findings</span>
+        <div class="mc-sprite-mount"></div>
+      </button>
+
+      <button type="button" class="mc-slot" data-slot-id="command_block" data-tab="json" data-label="2. Flask API &amp; JSON">
+        <span class="mc-slot-num">2</span>
+        <span class="mc-tooltip">Flask API &amp; JSON</span>
+        <div class="mc-sprite-mount"></div>
+      </button>
+
+      <button type="button" class="mc-slot" data-slot-id="end_rod" data-tab="codediff" data-label="3. Code Diff Engine">
+        <span class="mc-slot-num">3</span>
+        <span class="mc-tooltip">Code Diff Engine</span>
+        <div class="mc-sprite-mount"></div>
+      </button>
+
+      <button type="button" class="mc-slot" data-slot-id="enchanted_book" data-tab="history" data-label="4. PR History Replay">
+        <span class="mc-slot-num">4</span>
+        <span class="mc-tooltip">PR History Replay</span>
+        <div class="mc-sprite-mount mc-enchanted-svg"></div>
+      </button>
+    </nav>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      try {
+        const PIXEL_PALETTE = {
+          ".": null,
+          "K": "#14101c",
+          "I": "#363945",
+          "S": "#5a6073",
+          "L": "#8c94ab",
+          "O": "#c2410c",
+          "F": "#f97316",
+          "Y": "#facc15",
+          "W": "#fef9c3",
+          "B": "#5c2d16",
+          "T": "#9a4e28",
+          "C": "#c87544",
+          "A": "#94a3b8",
+          "R": "#ef4444",
+          "E": "#22c55e",
+          "U": "#eab308",
+          "4": "#7c2d12",
+          "5": "#ea580c",
+          "6": "#facc15",
+          "7": "#fef08a",
+          "d": "#2e1065",
+          "e": "#581c87",
+          "f": "#9333ea",
+          "g": "#ec4899",
+          "h": "#f472b6",
+          "i": "#fed7aa",
+          "j": "#f8fafc",
+          "s": "#d9db9c",
+          "t": "#b2b474",
+          "u": "#7e22ce",
+          "v": "#c084fc"
+        };
+
+        const SPRITE_MATRICES_16 = {
+          lantern: [
+            "......KKKK......",
+            ".....KLLLLK.....",
+            ".....KI..IK.....",
+            ".....KSSSSK.....",
+            "....KLLLLLLK....",
+            "...KSSSSSSSSK...",
+            "...KIIIIIIIIK...",
+            "...KIOFFFFOIK...",
+            "...KIFYYYYFIK...",
+            "...KIFYWWYFIK...",
+            "...KIFYWWYFIK...",
+            "...KIFYYYYFIK...",
+            "...KIOFFFFOIK...",
+            "...KIIIIIIIIK...",
+            "..KSSSSSSSSSSK..",
+            "..KKKKKKKKKKKK.."
+          ],
+          command_block: [
+            ".KKKKKKKKKKKKKK.",
+            "KCTTTTTTTTTTTTCK",
+            "KTTCCCCCCCCCCBTK",
+            "KTCKKKKKKKKKKCTK",
+            "KTCKAAAAAAAAKBTK",
+            "KTCKAARAAUAAKCTK",
+            "KTCKAAAAAAAAKBTK",
+            "KTCKAAKKKKAAKCTK",
+            "KTCKAAKRRKAAKBTK",
+            "KTCKAAKKKKAAKCTK",
+            "KTCKAAAAAAAAKBTK",
+            "KTCKAAEAAUAAKCTK",
+            "KTCKAAAAAAAAKBTK",
+            "KTBKKKKKKKKKKBTK",
+            "KBBBBBBBBBBBBBBK",
+            ".KKKKKKKKKKKKKK."
+          ],
+          end_rod: [
+            "............KKK.",
+            "...........K765K",
+            "..........K7654K",
+            ".........K7654K.",
+            "........K7654K..",
+            ".......K7654K...",
+            "......K7654K....",
+            ".....K7654K.....",
+            "....K7654K......",
+            "...K7654K.......",
+            "..K7654K........",
+            ".K7654K.........",
+            ".K654K..........",
+            ".K54K...........",
+            ".KKK............",
+            "................"
+          ],
+          enchanted_book: [
+            "................",
+            "......dddd......",
+            "....ddffffdd....",
+            "..ddffggggffdd..",
+            ".deeffghhgffeed.",
+            "deeeffgghgffeeed",
+            "djjeefggggfeejjd",
+            "djjjjeeggiiijjjd",
+            "djjjjjjeeiiijjjd",
+            ".ddjjjjjjjjjjdd.",
+            "...ddjjjjjjdd...",
+            ".....ddjjdd.....",
+            ".......dd.......",
+            "................",
+            "................",
+            "................"
+          ],
+          logo_d: [
+            "KKKKKKKKKKKKKKKK",
+            "KvvvvuuuuuuvvvvK",
+            "KvvuuuuuuuuuuvvK",
+            "KuuuuuuuuuuuuuuK",
+            "KssssKKKKKKssssK",
+            "KssstKvvvvKssssK",
+            "KssssKvKKvvKsssK",
+            "KssssKvKKvvKsssK",
+            "KssssKvKKvvKsssK",
+            "KssssKvKKvvKsssK",
+            "KssssKvvvvKssssK",
+            "KssstKKKKKKssssK",
+            "KssssssssssssssK",
+            "KttttttttttttttK",
+            "KttttttttttttttK",
+            "KKKKKKKKKKKKKKKK"
+          ]
+        };
+
+        function applyAnalysisResult(data) {
+  jsonOutput.textContent = JSON.stringify(data, null, 2);
+
+  if (data.status === "error") {
+    renderError(data.message || "Analysis failed.");
+    return;
+  }
+
+  const findings = Array.isArray(data.findings) ? data.findings : [];
+  const ERRORFindings = findings.filter(f => String(f.status || "").toLowerCase() !== "no_ERROR");
+  const uniqueFiles = new Set(findings.map(f => f.file).filter(Boolean)).size;
+  const exactCount = ERRORFindings.filter(f => f.match_type === "exact").length;
+
+  summaryPlaques.classList.remove("hidden");
+  statFiles.textContent = data.summary?.files_scanned ?? (uniqueFiles || 1);
+  statIssues.textContent = ERRORFindings.length;
+  statConfidence.textContent = ERRORFindings.length > 0 ? `${exactCount}/${ERRORFindings.length}` : "100%";
+
+  if (ERRORFindings.length === 0) {
+    stateBanner.classList.remove("hidden");
+    stateTitle.textContent = "ALL DOCUMENTATION IN SYNC";
+    stateTitle.className = "state-title is-emerald";
+    stateSubtitle.textContent = "0 errors — all checked documentation matches the source.";
+    findingsList.innerHTML = "";
+  } else {
+    stateBanner.classList.add("hidden");
+    renderFindingsCards(ERRORFindings);
+  }
+
+  renderCodeDiffView({ ...data, findings: ERRORFindings });
+}
+
+function renderFindingsCards(findings) {
+  findingsList.innerHTML = findings.map((f, idx) => {
+    const oldVal = f.documented_value ?? f.old_value ?? "?";
+    const newVal = f.source_value ?? f.new_value ?? "?";
+    const statement = f.documented_statement ?? f.outdated_sentence ?? oldVal;
+    const sectionTag = f.section ? ` &bull; [${escapeHtml(f.section)}]` : "";
+    const matchBadge = f.match_type ? ` (${escapeHtml(f.match_type.toUpperCase())})` : "";
+    const explanation = f.explanation ||
+      `Section "${f.section || "Docs"}" documents ${f.symbol} as ${oldVal}, while code uses ${newVal}.`;
+
+    return `
+      <article class="mc-panel finding-card">
+        <div class="finding-header">
+          <div class="finding-meta">
+            <span class="ERROR-badge">ERROR #${idx + 1}${matchBadge}</span>
+            <span class="file-loc">${escapeHtml(f.file)} &bull; Line ${escapeHtml(String(f.line))}${sectionTag}</span>
+          </div>
+          <span class="symbol-pill">Symbol: ${escapeHtml(f.symbol || "N/A")}</span>
+        </div>
+
+        <div class="compare-grid">
+          <div class="box-doc-old">
+            <div class="box-mini-title">DOCUMENTED STATEMENT (OLD: ${escapeHtml(String(oldVal))})</div>
+            <div class="box-content selectable">${escapeHtml(statement)}</div>
+          </div>
+          <div class="box-code-new">
+            <div class="box-mini-title">CURRENT CODE VALUE (NEW: ${escapeHtml(String(newVal))})</div>
+            <div class="box-content selectable">${escapeHtml(f.symbol)} = ${escapeHtml(String(newVal))}</div>
+          </div>
+        </div>
+
+        <div class="finding-explanation">${escapeHtml(explanation)}</div>
+
+        <div class="mc-sign suggestion-sign">
+          <div>
+            <div class="suggestion-label">SUGGESTED CORRECTION</div>
+            <div class="suggestion-text selectable">${escapeHtml(f.suggestion || "")}</div>
+          </div>
+          <button type="button" data-copy-idx="${idx}" class="copy-fix-btn mc-btn-stone">COPY FIX</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  document.querySelectorAll(".copy-fix-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = Number(btn.getAttribute("data-copy-idx"));
+      copyTextSafe(findings[idx]?.suggestion || "", btn);
+    });
+  });
+}
+
+function renderCodeDiffView(data) {
+  const changes = data.changes || [];
+  const findings = data.findings || [];
+
+  if (changes.length === 0 && findings.length === 0) {
+    codeDiffList.innerHTML = `<div style="text-align:center; padding:24px; font-size:1.2rem; color:rgba(233,213,255,0.75);">No C++ symbol changes detected.</div>`;
+    return;
+  }
+
+  const displayChanges = changes.length > 0 ? changes : findings.map((f) => ({
+    symbol: f.symbol,
+    file: f.source_file || f.file || "source.cpp",
+    line: f.line,
+    old_value: f.documented_value ?? f.old_value ?? "?",
+    new_value: f.source_value ?? f.new_value ?? "?",
+    change_type: f.match_type || "value_changed"
+  }));
+
+  codeDiffList.innerHTML = displayChanges.map((c) => `
+    <div class="diff-row-card">
+      <div class="diff-row-meta">
+        <span>${escapeHtml(c.file || "source.cpp")} : Line ${escapeHtml(String(c.line || "?"))}</span>
+        <span>${escapeHtml(String(c.change_type || "AST_CHANGE"))}</span>
+      </div>
+      <div class="diff-del">- ${escapeHtml(c.symbol)} = ${escapeHtml(String(c.old_value))}</div>
+      <div class="diff-add">+ ${escapeHtml(c.symbol)} = ${escapeHtml(String(c.new_value))}</div>
+    </div>
+  `).join("");
+}
+
+        function createCrispSpriteImg(matrixKey, scale) {
+          const matrix = SPRITE_MATRICES_16[matrixKey];
+          const size = 16;
+          const offscreen = document.createElement("canvas");
+          offscreen.width = size * scale;
+          offscreen.height = size * scale;
+          const octx = offscreen.getContext("2d");
+          octx.imageSmoothingEnabled = false;
+
+          if (matrix) {
+            for (let y = 0; y < size; y++) {
+              const row = matrix[y];
+              for (let x = 0; x < size; x++) {
+                const color = PIXEL_PALETTE[row[x]];
+                if (color) {
+                  octx.fillStyle = color;
+                  octx.fillRect(x * scale, y * scale, scale, scale);
+                }
+              }
+            }
+          }
+
+          const img = document.createElement("img");
+          img.src = offscreen.toDataURL("image/png");
+          img.width = size * scale;
+          img.height = size * scale;
+          img.alt = matrixKey;
+          img.className = scale === 2 ? "mc-sprite-2x" : "";
+          return img;
+        }
+
+        const logoContainer = document.getElementById("logo-d-emblem");
+        if (logoContainer) {
+          logoContainer.innerHTML = "";
+          logoContainer.appendChild(createCrispSpriteImg("logo_d", 3));
+        }
+
+        document.querySelectorAll(".mc-slot[data-slot-id]").forEach((slot) => {
+          const key = slot.getAttribute("data-slot-id");
+          const mount = slot.querySelector(".mc-sprite-mount");
+          if (mount && SPRITE_MATRICES_16[key]) {
+            mount.innerHTML = "";
+            mount.appendChild(createCrispSpriteImg(key, 2));
+          }
+        });
+
+        const canvas = document.getElementById("end-canvas");
+        const ctx = canvas.getContext("2d");
+        let width = 0;
+        let height = 0;
+        let spores = [];
+        let animFrame = 0;
+
+        function resizeCanvas() {
+          width = canvas.width = Math.max(320, window.innerWidth || document.documentElement.clientWidth || 1024);
+          height = canvas.height = Math.max(320, window.innerHeight || document.documentElement.clientHeight || 768);
+          ctx.imageSmoothingEnabled = false;
+          initSpores();
+        }
+
+        function initSpores() {
+          const count = Math.min(85, Math.floor((width * height) / 15000));
+          spores = Array.from({ length: count }, () => ({
+            x: Math.floor((Math.random() * width) / 4) * 4,
+            y: Math.floor((Math.random() * height) / 4) * 4,
+            size: Math.random() > 0.7 ? 4 : 2,
+            speedY: -0.2 - Math.random() * 0.35,
+            speedX: (Math.random() - 0.5) * 0.18,
+            phase: Math.random() * Math.PI * 2,
+            color: Math.random() > 0.3 ? "#c084fc" : "#f3e8ff"
+          }));
+        }
+
+        function drawPixelRect(x, y, w, h, color) {
+          ctx.fillStyle = color;
+          ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+        }
+
+        function drawEndStoneTerrains() {
+          const horizonY = Math.round(height * 0.54);
+
+          drawPixelRect(width * 0.14, horizonY - 6, 96, 10, "#919160");
+          drawPixelRect(width * 0.16, horizonY + 4, 64, 8, "#6e6e46");
+          drawPixelRect(width * 0.74, horizonY - 4, 112, 10, "#919160");
+          drawPixelRect(width * 0.76, horizonY + 6, 76, 8, "#6e6e46");
+
+          drawPixelRect(0, horizonY, width, height - horizonY, "#c7c786");
+
+          const step = 16;
+          for (let y = horizonY; y < height; y += step) {
+            const depthRatio = (y - horizonY) / Math.max(1, height - horizonY);
+            const cell = depthRatio < 0.35 ? 4 : 8;
+            for (let x = 0; x < width; x += step * 2) {
+              const hash = ((x * 13 + y * 29) >> 3) % 11;
+              if (hash === 0 || hash === 4) {
+                drawPixelRect(x + (y % 16), y + 4, cell, cell, "#b3b374");
+              } else if (hash === 2 || hash === 7) {
+                drawPixelRect(x + 6, y + 2, cell, cell, "#e8e8ac");
+              }
+            }
+          }
+
+          const terraces = [
+            { x: 0, y: horizonY + height * 0.04, w: width * 0.36, h: height * 0.42, top: "#dede9e", cliff: "#8f8f5b", cliffH: 14 },
+            { x: 0, y: horizonY + height * 0.11, w: width * 0.28, h: height * 0.35, top: "#e6e6a8", cliff: "#838352", cliffH: 18 },
+            { x: width * 0.48, y: horizonY + height * 0.06, w: width * 0.52, h: height * 0.40, top: "#dede9e", cliff: "#8f8f5b", cliffH: 16 },
+            { x: width * 0.58, y: horizonY + height * 0.15, w: width * 0.42, h: height * 0.32, top: "#e6e6a8", cliff: "#7c7c4d", cliffH: 20 },
+            { x: width * 0.24, y: horizonY + height * 0.24, w: width * 0.52, h: height * 0.24, top: "#dede9e", cliff: "#838352", cliffH: 22 }
+          ];
+
+          for (const t of terraces) {
+            drawPixelRect(t.x, t.y - t.cliffH, t.w, t.cliffH, t.cliff);
+            drawPixelRect(t.x, t.y - t.cliffH, t.w, 4, "#f2f2ba");
+            drawPixelRect(t.x, t.y, t.w, t.h, t.top);
+
+            for (let bx = Math.floor(t.x); bx < t.x + t.w; bx += 24) {
+              drawPixelRect(bx, t.y - t.cliffH + 4, 4, t.cliffH - 4, "#6e6e44");
+            }
+          }
+        }
+
+        function drawEndCityAndShip(tick) {
+          const cx = Math.round(width * 0.49);
+          const baseY = Math.round(height * 0.54);
+
+          const pulse = 0.12 + Math.sin(tick * 0.035) * 0.05;
+          ctx.fillStyle = `rgba(192, 132, 252, ${pulse.toFixed(3)})`;
+          ctx.fillRect(cx - 84, baseY - 148, 168, 136);
+          ctx.fillStyle = `rgba(216, 180, 254, ${(pulse * 0.7).toFixed(3)})`;
+          ctx.fillRect(cx - 56, baseY - 128, 112, 104);
+
+          drawPixelRect(cx - 22, baseY - 46, 32, 46, "#9c599c");
+          drawPixelRect(cx - 24, baseY - 50, 36, 6, "#dede9e");
+          drawPixelRect(cx - 20, baseY - 62, 28, 12, "#b36bb3");
+          drawPixelRect(cx - 12, baseY - 72, 12, 10, "#7a3e7a");
+
+          for (let step = 0; step < 6; step++) {
+            drawPixelRect(cx + 8 + step * 8, baseY - 44 - step * 7, 12, 8, "#a864a8");
+            drawPixelRect(cx + 8 + step * 8, baseY - 46 - step * 7, 12, 2, "#dede9e");
+          }
+
+          const spireX = cx + 44;
+          const spireY = baseY - 82;
+          drawPixelRect(spireX - 14, spireY - 44, 28, 44, "#9c599c");
+          drawPixelRect(spireX - 18, spireY - 48, 36, 6, "#dede9e");
+          drawPixelRect(spireX - 12, spireY - 62, 24, 14, "#b870b8");
+          drawPixelRect(spireX - 6, spireY - 74, 12, 12, "#7a3e7a");
+          drawPixelRect(spireX - 6, spireY - 32, 4, 10, "#fef9c3");
+          drawPixelRect(spireX + 4, spireY - 32, 4, 10, "#fef9c3");
+
+          drawPixelRect(spireX - 34, spireY - 26, 20, 8, "#a864a8");
+          drawPixelRect(spireX - 38, spireY - 36, 14, 14, "#b870b8");
+          drawPixelRect(spireX + 14, spireY - 34, 22, 8, "#a864a8");
+          drawPixelRect(spireX + 28, spireY - 46, 16, 16, "#b870b8");
+
+          const shipBob = Math.round(Math.sin(tick * 0.04) * 3);
+          const shipX = cx - 54;
+          const shipY = baseY - 106 + shipBob;
+
+          drawPixelRect(shipX - 24, shipY, 48, 12, "#6b386b");
+          drawPixelRect(shipX - 18, shipY + 12, 36, 6, "#4a234a");
+          drawPixelRect(shipX - 26, shipY - 2, 52, 4, "#dede9e");
+          drawPixelRect(shipX - 32, shipY - 6, 8, 8, "#27272a");
+          drawPixelRect(shipX - 36, shipY - 4, 4, 4, "#3f3f46");
+          drawPixelRect(shipX - 2, shipY - 24, 4, 24, "#dede9e");
+          drawPixelRect(shipX - 10, shipY - 22, 16, 14, "#b870b8");
+          drawPixelRect(shipX + 10, shipY - 12, 12, 10, "#9c599c");
+        }
+
+        function drawStaticEndermen() {
+          const horizonY = Math.round(height * 0.54);
+          const positions = [
+            { x: Math.round(width * 0.19), y: horizonY + Math.round(height * 0.09), scale: 1 },
+            { x: Math.round(width * 0.43), y: horizonY + Math.round(height * 0.12), scale: 1.15 }
+          ];
+
+          for (const e of positions) {
+            const s = e.scale;
+            const headH = Math.round(8 * s);
+            const torsoH = Math.round(12 * s);
+            const legH = Math.round(18 * s);
+            const totalH = headH + torsoH + legH;
+            const topY = e.y - totalH;
+
+            drawPixelRect(e.x - Math.round(3 * s), topY + headH + torsoH, Math.round(2 * s), legH, "#09090b");
+            drawPixelRect(e.x + Math.round(1 * s), topY + headH + torsoH, Math.round(2 * s), legH, "#09090b");
+            drawPixelRect(e.x - Math.round(4 * s), topY + headH, Math.round(8 * s), torsoH, "#09090b");
+            drawPixelRect(e.x - Math.round(6 * s), topY + headH, Math.round(2 * s), torsoH + Math.round(10 * s), "#09090b");
+            drawPixelRect(e.x + Math.round(4 * s), topY + headH, Math.round(2 * s), torsoH + Math.round(10 * s), "#09090b");
+            drawPixelRect(e.x - Math.round(4 * s), topY, Math.round(8 * s), headH, "#09090b");
+            drawPixelRect(e.x - Math.round(3 * s), topY + Math.round(3 * s), Math.round(2 * s), Math.round(2 * s), "#e879f9");
+            drawPixelRect(e.x + Math.round(1 * s), topY + Math.round(3 * s), Math.round(2 * s), Math.round(2 * s), "#e879f9");
+          }
+        }
+
+        function drawChorusTree(baseX, baseY, scale, seed, tick) {
+          const unit = Math.max(4, Math.round(6 * scale));
+          const sway = Math.round(Math.sin(tick * 0.025 + seed) * (scale > 1.2 ? 2 : 1));
+          const bx = Math.round(baseX);
+          const by = Math.round(baseY);
+
+          const drawStalkSegment = (x, y, w, h) => {
+            drawPixelRect(x, y, w, h, "#2b1633");
+            drawPixelRect(x + Math.max(2, Math.floor(w * 0.25)), y, Math.max(2, Math.floor(w * 0.45)), h, "#472554");
+          };
+
+          const drawChorusFlower = (fx, fy) => {
+            const fw = unit + 4;
+            const fh = unit + 4;
+            const ox = Math.round(fx - fw / 2);
+            const oy = Math.round(fy - fh);
+            drawPixelRect(ox, oy, fw, fh, "#3b1d47");
+            drawPixelRect(ox + 2, oy + 2, fw - 4, fh - 4, "#c2cca6");
+            drawPixelRect(ox + 4, oy + 4, Math.max(2, fw - 8), Math.max(2, fh - 8), "#e4ebd1");
+          };
+
+          const trunkH = unit * 6;
+          drawStalkSegment(bx - Math.floor(unit / 2), by - trunkH, unit, trunkH);
+
+          const leftY = by - unit * 4;
+          const leftSpan = unit * 3;
+          drawStalkSegment(bx - leftSpan + sway, leftY, leftSpan, unit);
+          const leftUpH = unit * (4 + (seed % 3));
+          drawStalkSegment(bx - leftSpan + sway, leftY - leftUpH, unit, leftUpH);
+          drawChorusFlower(bx - leftSpan + Math.floor(unit / 2) + sway, leftY - leftUpH);
+
+          const rightY = by - unit * 5;
+          const rightSpan = unit * 3;
+          drawStalkSegment(bx + sway, rightY, rightSpan, unit);
+          const rightUpH = unit * (5 + ((seed + 1) % 3));
+          drawStalkSegment(bx + rightSpan - unit + sway, rightY - rightUpH, unit, rightUpH);
+          drawChorusFlower(bx + rightSpan - Math.floor(unit / 2) + sway, rightY - rightUpH);
+
+          if (seed % 2 === 0) {
+            const topH = unit * 4;
+            drawStalkSegment(bx - Math.floor(unit / 2) + sway, by - trunkH - topH, unit, topH);
+            drawChorusFlower(bx + sway, by - trunkH - topH);
+          }
+        }
+
+        function drawChorusForest(tick) {
+          const horizonY = Math.round(height * 0.54);
+
+          const bgTrees = [0.06, 0.12, 0.17, 0.24, 0.31, 0.38, 0.61, 0.68, 0.75, 0.83, 0.91];
+          bgTrees.forEach((rx, idx) => {
+            drawChorusTree(width * rx, horizonY + 8, 0.55, idx + 1, tick);
+          });
+
+          const midTrees = [
+            { rx: 0.08, ry: 0.67, s: 0.95, seed: 3 },
+            { rx: 0.22, ry: 0.65, s: 0.85, seed: 6 },
+            { rx: 0.57, ry: 0.66, s: 1.0, seed: 2 },
+            { rx: 0.66, ry: 0.72, s: 1.15, seed: 5 },
+            { rx: 0.88, ry: 0.68, s: 1.05, seed: 8 }
+          ];
+          midTrees.forEach((t) => {
+            drawChorusTree(width * t.rx, height * t.ry, t.s, t.seed, tick);
+          });
+
+          drawChorusTree(width * 0.31, height * 0.91, 1.65, 4, tick);
+          drawChorusTree(width * 0.77, height * 0.96, 1.75, 7, tick);
+          if (width > 640) {
+            drawChorusTree(width * 0.96, height * 0.78, 1.5, 2, tick);
+          }
+        }
+
+        function renderEndScene() {
+          animFrame++;
+
+          ctx.fillStyle = "#08080a";
+          ctx.fillRect(0, 0, width, height);
+
+          drawEndCityAndShip(animFrame);
+
+          drawEndStoneTerrains();
+
+          drawStaticEndermen();
+
+          drawChorusForest(animFrame);
+
+          for (const s of spores) {
+            s.y += s.speedY;
+            s.x += s.speedX;
+            if (s.y < -8) {
+              s.y = height + 8;
+              s.x = Math.floor((Math.random() * width) / 4) * 4;
+            }
+            const twinkle = 0.35 + 0.65 * Math.abs(Math.sin(animFrame * 0.04 + s.phase));
+            ctx.globalAlpha = twinkle;
+            ctx.fillStyle = s.color;
+            ctx.fillRect(Math.round(s.x), Math.round(s.y), s.size, s.size);
+          }
+          ctx.globalAlpha = 1;
+
+          requestAnimationFrame(renderEndScene);
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+        renderEndScene();
+
+        let lastSparkleTime = 0;
+        document.addEventListener("mousemove", (e) => {
+          const now = Date.now();
+          if (now - lastSparkleTime < 45) return;
+          lastSparkleTime = now;
+
+          const sp = document.createElement("div");
+          sp.className = "ender-sparkle";
+          sp.style.left = `${e.clientX + 6}px`;
+          sp.style.top = `${e.clientY + 6}px`;
+          sp.style.setProperty("--dx", `${Math.round((Math.random() - 0.5) * 24)}px`);
+          sp.style.setProperty("--dy", `${Math.round(-8 - Math.random() * 18)}px`);
+          document.body.appendChild(sp);
+          setTimeout(() => sp.remove(), 560);
+        });
+
+        document.addEventListener("click", (e) => {
+          const fx = document.createElement("div");
+          fx.className = "slash-fx";
+          fx.style.left = `${e.clientX}px`;
+          fx.style.top = `${e.clientY}px`;
+          fx.innerHTML = `<svg viewBox="0 0 16 16" style="width:100%;height:100%"><path fill="#67e8f9" d="M2 12L12 2l2 2L4 14z"/><rect x="11" y="1" width="3" height="3" fill="#ffffff"/></svg>`;
+          document.body.appendChild(fx);
+          setTimeout(() => fx.remove(), 300);
+        });
+
+        const SCENARIOS = {
+          ERROR: {
+            status: "success",
+            repo_path: "./test-repository",
+            summary: {
+              files_scanned: 12,
+              issues_found: 3,
+              high_confidence: 3
+            },
+            changes: [
+              { symbol: "TIMEOUT", file: "src/config.cpp", line: 14, old_value: "30", new_value: "60", change_type: "value_changed" },
+              { symbol: "--strict-mode", file: "src/cli.cpp", line: 42, old_value: "--strict-mode", new_value: "REMOVED", change_type: "flag_removed" },
+              { symbol: "MAX_RETRIES", file: "src/network.cpp", line: 27, old_value: "3", new_value: "5", change_type: "value_changed" }
+            ],
+            findings: [
+              {
+                file: "README.md",
+                line: 12,
+                symbol: "TIMEOUT",
+                old_value: "30",
+                new_value: "60",
+                status: "potentially_outdated",
+                outdated_sentence: "The application waits for 30 seconds before timing out.",
+                explanation: "The documented timeout value (30) differs from const int TIMEOUT = 60 in src/config.cpp.",
+                suggestion: "The application waits for 60 seconds before timing out."
+              },
+              {
+                file: "docs/CLI.md",
+                line: 29,
+                symbol: "--strict-mode",
+                old_value: "--strict-mode",
+                new_value: "REMOVED",
+                status: "potentially_outdated",
+                outdated_sentence: "Pass --strict-mode to abort execution on schema warnings.",
+                explanation: "Flag --strict-mode was removed from src/cli.cpp in the latest commit.",
+                suggestion: "Remove the --strict-mode flag description or replace it with --fail-on-warn."
+              },
+              {
+                file: "README.md",
+                line: 45,
+                symbol: "MAX_RETRIES",
+                old_value: "3",
+                new_value: "5",
+                status: "potentially_outdated",
+                outdated_sentence: "Failed requests are retried up to 3 times by default.",
+                explanation: "Default retry count changed from 3 to 5 in src/network.cpp.",
+                suggestion: "Failed requests are retried up to 5 times by default."
+              }
+            ]
+          },
+          clean: {
+            status: "success",
+            repo_path: "./sample-repo-clean",
+            summary: {
+              files_scanned: 18,
+              issues_found: 0,
+              high_confidence: 0
+            },
+            changes: [],
+            findings: []
+          },
+          error: {
+            status: "error",
+            message: "Repository path not found or inaccessible: ./broken-repo"
+          }
+        };
+
+        const repoInput = document.getElementById("repo-path-input");
+        const btnAnalyze = document.getElementById("btn-analyze");
+        const analyzeBtnLabel = document.getElementById("analyze-btn-label");
+        const signStatusLine = document.getElementById("sign-status-line");
+        const backendStatusText = document.getElementById("backend-status-text");
+        const pingBars = document.getElementById("ping-bars");
+        const xpFill = document.getElementById("xp-fill");
+
+        const summaryPlaques = document.getElementById("summary-plaques");
+        const statFiles = document.getElementById("stat-files");
+        const statIssues = document.getElementById("stat-issues");
+        const statConfidence = document.getElementById("stat-confidence");
+
+        const stateBanner = document.getElementById("state-banner");
+        const stateTitle = document.getElementById("state-title");
+        const stateSubtitle = document.getElementById("state-subtitle");
+        const findingsList = document.getElementById("findings-list");
+        const codeDiffList = document.getElementById("code-diff-list");
+        const apiEndpointLog = document.getElementById("api-endpoint-log");
+        const jsonOutput = document.getElementById("json-output");
+
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function copyTextSafe(text, buttonEl) {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand("copy");
+            if (buttonEl) {
+              const orig = buttonEl.textContent;
+              buttonEl.textContent = "COPIED!";
+              setTimeout(() => { buttonEl.textContent = orig; }, 1200);
+            }
+          } catch (err) {
+            console.warn("Copy failed:", err);
+          }
+          document.body.removeChild(ta);
+        }
+
+        async function checkFlaskStatus() {
+          backendStatusText.textContent = "PING...";
+          backendStatusText.className = "status-pill-text is-amber";
+
+          const endpoints = ["/api/status", "http://127.0.0.1:5000/api/status"];
+          for (const url of endpoints) {
+            try {
+              const controller = new AbortController();
+              const timer = setTimeout(() => controller.abort(), 1200);
+              const res = await fetch(url, { signal: controller.signal });
+              clearTimeout(timer);
+              if (res.ok) {
+                backendStatusText.textContent = "FLASK LIVE";
+                backendStatusText.className = "status-pill-text is-lime";
+                pingBars.querySelectorAll("rect").forEach(r => r.setAttribute("fill", "#80ff20"));
+                return url.replace("/api/status", "");
+              }
+            } catch (_) {
+            }
+          }
+
+          backendStatusText.textContent = "LOCAL DEMO";
+          backendStatusText.className = "status-pill-text is-purple";
+          pingBars.querySelectorAll("rect").forEach((r, idx) => {
+            r.setAttribute("fill", idx < 4 ? "#c084fc" : "#4b3869");
+          });
+          return null;
+        }
+
+        async function runAnalysis(forcedScenario = null) {
+          const repoPath = repoInput.value.trim();
+          if (!repoPath && !forcedScenario) {
+            renderError("Project path cannot be empty.");
+            return;
+          }
+
+          signStatusLine.textContent = "SCANNING...";
+          analyzeBtnLabel.textContent = "SCANNING...";
+          xpFill.style.width = "25%";
+          stateBanner.classList.remove("hidden");
+          stateTitle.textContent = "RUNNING C++ & PYTHON ENGINES...";
+          stateTitle.className = "state-title is-amber";
+          stateSubtitle.textContent = `Target: ${repoPath}`;
+          findingsList.innerHTML = "";
+
+          setTimeout(() => { xpFill.style.width = "65%"; }, 160);
+
+          if (forcedScenario && SCENARIOS[forcedScenario]) {
+            setTimeout(() => {
+              xpFill.style.width = "100%";
+              signStatusLine.textContent = "COMPLETE";
+              analyzeBtnLabel.textContent = "> ANALYZE <";
+              applyAnalysisResult(SCENARIOS[forcedScenario]);
+            }, 380);
+            return;
+          }
+
+          const baseUrl = await checkFlaskStatus();
+          if (baseUrl !== null) {
+            try {
+              const response = await fetch(`${baseUrl}/api/analyze`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ repo_path: repoPath })
+              });
+              const data = await response.json();
+
+              if (data.status === "saved") {
+                lastFindingsRaw = "";
+                signStatusLine.textContent = "WAITING FOR VERDICT...";
+                analyzeBtnLabel.textContent = "> ANALYZE <";
+                stateBanner.classList.remove("hidden");
+                stateTitle.textContent = "REPOSITORY RECEIVED";
+                stateTitle.className = "state-title is-amber";
+                stateSubtitle.textContent = "Waiting for bridge-out to return verdict.json...";
+                xpFill.style.width = "65%";
+              } else {
+                signStatusLine.textContent = "BRIDGE-IN ERROR";
+                analyzeBtnLabel.textContent = "> ANALYZE <";
+                renderError(data.message || "Bridge-in did not accept the repository path.");
+              }
+              return;
+            } catch (_) {
+            }
+          }
+
+          setTimeout(() => {
+            xpFill.style.width = "100%";
+            signStatusLine.textContent = "COMPLETE";
+            analyzeBtnLabel.textContent = "> ANALYZE <";
+
+            const lower = repoPath.toLowerCase();
+            if (lower.includes("broken") || lower.includes("invalid") || lower.includes("missing")) {
+              const errPayload = { ...SCENARIOS.error, message: `Repository path not found or inaccessible: ${repoPath}` };
+              applyAnalysisResult(errPayload);
+            } else if (lower.includes("clean") || lower.includes("synced")) {
+              const cleanPayload = JSON.parse(JSON.stringify(SCENARIOS.clean));
+              cleanPayload.repo_path = repoPath;
+              applyAnalysisResult(cleanPayload);
+            } else {
+              const ERRORPayload = JSON.parse(JSON.stringify(SCENARIOS.ERROR));
+              ERRORPayload.repo_path = repoPath;
+              applyAnalysisResult(ERRORPayload);
+            }
+          }, 420);
+        }
+
+        let lastFindingsRaw = "";
+
+async function syncFindingsFromOutBridge() {
+  try {
+    const res = await fetch("http://127.0.0.1:5001/api/findings", { cache: "no-store" });
+    if (!res.ok) return;
+
+    const raw = await res.text();
+    if (raw && raw !== lastFindingsRaw) {
+      lastFindingsRaw = raw;
+      const data = JSON.parse(raw);
+      if (Array.isArray(data.findings) && data.status !== "waiting" && data.status !== "error") {
+        applyAnalysisResult(data);
+        signStatusLine.textContent = "SYNCED";
+        analyzeBtnLabel.textContent = "> ANALYZE <";
+        xpFill.style.width = "100%";
+      }
+    }
+  } catch (_) {
+  }
+}
+
+syncFindingsFromOutBridge();
+setInterval(syncFindingsFromOutBridge, 1000);
+
+        function renderError(message) {
+          summaryPlaques.classList.add("hidden");
+          stateBanner.classList.remove("hidden");
+          stateTitle.textContent = "ANALYSIS ERROR";
+          stateTitle.className = "state-title is-rose";
+          stateSubtitle.textContent = message;
+          findingsList.innerHTML = "";
+          signStatusLine.textContent = "ERROR";
+          analyzeBtnLabel.textContent = "> ANALYZE <";
+        }
+
+        const slots = document.querySelectorAll(".mc-slot");
+        const hotbarLabel = document.getElementById("hotbar-active-label");
+        const views = {
+          scan: document.getElementById("view-scan"),
+          json: document.getElementById("view-json"),
+          codediff: document.getElementById("view-codediff"),
+          history: document.getElementById("view-history")
+        };
+
+        function activateSlot(slotEl) {
+          const tab = slotEl.getAttribute("data-tab");
+          const label = slotEl.getAttribute("data-label");
+          if (label) hotbarLabel.innerHTML = label;
+
+          if (tab && views[tab]) {
+            slots.forEach((s) => s.classList.remove("active"));
+            slotEl.classList.add("active");
+            Object.entries(views).forEach(([key, el]) => {
+              if (key === tab) {
+                el.classList.remove("hidden");
+              } else {
+                el.classList.add("hidden");
+              }
+            });
+          }
+        }
+
+        slots.forEach((slot) => {
+          slot.addEventListener("click", () => activateSlot(slot));
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (document.activeElement === repoInput) {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              runAnalysis();
+            }
+            return;
+          }
+          const num = parseInt(e.key, 10);
+          if (num >= 1 && num <= slots.length) {
+            activateSlot(slots[num - 1]);
+          }
+        });
+
+        btnAnalyze.addEventListener("click", () => runAnalysis());
+        document.getElementById("btn-ping-server").addEventListener("click", checkFlaskStatus);
+
+        document.querySelectorAll("[data-path]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            repoInput.value = btn.getAttribute("data-path");
+            repoInput.focus();
+          });
+        });
+
+        document.getElementById("btn-copy-json").addEventListener("click", (e) => {
+          copyTextSafe(jsonOutput.textContent, e.target);
+        });
+
+        document.getElementById("btn-test-endpoint").addEventListener("click", async () => {
+          apiEndpointLog.textContent = "Pinging GET /api/status ...";
+          const base = await checkFlaskStatus();
+          apiEndpointLog.textContent = base
+            ? `200 OK — Connected to ${base}/api/status`
+            : "Offline Demo Mode — Start Flask on port 5000 for live responses";
+        });
+
+        document.querySelectorAll(".replay-pr-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            repoInput.value = btn.getAttribute("data-replay-path");
+            activateSlot(slots[0]);
+            runAnalysis("ERROR");
+          });
+        });
+
+        checkFlaskStatus();
+        applyAnalysisResult(SCENARIOS.ERROR);
+      } catch (err) {
+        console.error("April initialization error:", err);
+      }
+    });
+    document.getElementById("analyze-form").addEventListener("submit", (e) => e.preventDefault());
+  </script>
+</body>
+</html>
